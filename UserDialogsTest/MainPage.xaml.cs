@@ -9,7 +9,14 @@ namespace UserDialogsTest
 	{
 		public MainPage ()
 		{
+			BindingContext = new MainViewModel ();
 			InitializeComponent ();
+			BarcodeEntry.Completed += HandleCompleted;
+		}
+
+		public void HandleCompleted(object sender, EventArgs e)
+		{
+			(BindingContext as MainViewModel).Barcode = (sender as Entry).Text.Trim ();
 		}
 	}
 }
